@@ -1,7 +1,7 @@
-(defproject twitter_node "0.1.0-SNAPSHOT"
+(defproject octopoda.node/twitter "1.0.0-SNAPSHOT"
   :description "FIXME: write this!"
   :url "http://example.com/FIXME"
-  :dependencies [[node "0.1.0-SNAPSHOT"]
+  :dependencies [[octopoda.node/base "1.0.0"]
                  [org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.8.34"]
                  [org.clojure/core.async "0.2.374"]
