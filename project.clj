@@ -19,6 +19,8 @@
                   "target"
                   "figwheel_server.log"
                   "npm_modules"]
+  :lein-release {:scm :git
+                 :deploy-via :lein-install}
   :source-paths ["src/cljs"]
   :cljsbuild {:builds [{:id "test"
                         :source-paths ["src/cljs" "test"]
