@@ -1,4 +1,4 @@
-(defproject octopoda.node/twitter "1.0.0-SNAPSHOT"
+(defproject octopoda.node/twitter "1.0.0"
   :description "FIXME: write this!"
   :url "http://example.com/FIXME"
   :dependencies [[octopoda.node/base "1.0.0"]
