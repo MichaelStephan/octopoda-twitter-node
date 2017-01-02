@@ -1,0 +1,13 @@
+FROM gliderlabs/alpine:latest
+RUN apk --update add nodejs && \
+      rm -rf /opt/cache/apk/*
+
+RUN addgroup octopoda-node && \
+    adduser -D -h /home/octopoda-node -G octopoda-node octopoda-node 
+
+RUN mkdir -p /opt/octopoda-node && chown octopoda-node:octopoda-node /opt/octopoda-node 
+USER octopoda-node
+WORKDIR /opt/octopoda-node
+ADD node_modules /opt/octopoda-node/node_modules
+ADD out.prod  /opt/octopoda-node/out.prod
+ENTRYPOINT ["/usr/bin/node", "/opt/octopoda-node/out.prod/node.js"]

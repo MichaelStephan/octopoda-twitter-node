@@ -1,0 +1,13 @@
+FROM gliderlabs/alpine:latest
+RUN apk --update add bash curl nodejs openjdk8-jre make python g++ && \
+      rm -rf /var/cache/apk/*
+
+RUN addgroup octopoda-build && \
+    adduser -D -h /home/octopoda-build -G octopoda-build octopoda-build 
+
+ADD https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein /usr/bin/lein
+RUN chmod a+rx /usr/bin/lein 
+
+USER octopoda-build
+WORKDIR /home/octopoda-build/project
+RUN lein

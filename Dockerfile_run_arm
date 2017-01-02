@@ -1,0 +1,16 @@
+FROM resin/rpi-raspbian
+ADD https://nodejs.org/dist/v4.4.7/node-v4.4.7-linux-armv7l.tar.xz node-v4.4.7-linux-armv7l.tar.xz
+RUN tar -xf node-v4.4.7-linux-armv7l.tar.xz && \
+	cd node-v4.4.7-linux-armv7l && \
+	cp -r * /usr/local && \
+	rm -rf ../node-v4.4.7-linux-armv7l
+
+RUN addgroup octopoda-node && \
+	adduser --disabled-password --ingroup octopoda-node --gecos "" octopoda-node
+
+RUN mkdir -p /opt/octopoda-node && chown octopoda-node:octopoda-node /opt/octopoda-node 
+USER octopoda-node
+WORKDIR /opt/octopoda-node
+ADD node_modules /opt/octopoda-node/node_modules
+ADD out.prod  /opt/octopoda-node/out.prod
+ENTRYPOINT ["/usr/local/bin/node", "/opt/octopoda-node/out.prod/node.js"]
